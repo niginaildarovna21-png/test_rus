@@ -3373,6 +3373,8 @@ function saveResult(classValue, section, correct, total, percent, grade, gradeTe
         details: details || 'Нет деталей'
     };
     
+    console.log('📤 Отправляем данные:', data);
+
     fetch(webAppUrl, {
         method: 'POST',
         mode: 'no-cors',
@@ -3380,9 +3382,9 @@ function saveResult(classValue, section, correct, total, percent, grade, gradeTe
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-    }).then(() => {
-        alert('✅ Данные отправлены!');
-    }).catch(error => {
+    }).then((response) => {
+        console.log('✅ Ответ от сервера:', response);
+        alert('✅ Данные отправлены!');    }).catch(error => {
         alert('❌ Ошибка: ' + error);
         console.log('Ошибка отправки в таблицу:', error);
     });
